@@ -1,0 +1,10 @@
+# this is a basic development compose file
+
+services:
+  dolfinx-dev:
+    image: "dolfinx/lab:stable"
+    entrypoint: ["jupyter", "lab", "--ip", "0.0.0.0", "--no-browser", "--allow-root", "--ServerApp.password", "", "--ServerApp.token", ""]
+    ports:
+      - 8888:8888
+    volumes:
+      - ./src:/root/src
