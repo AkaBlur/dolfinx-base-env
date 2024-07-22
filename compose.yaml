@@ -1,10 +1,14 @@
 # this is a basic development compose file
-
 services:
   dolfinx-dev:
     image: "dolfinx/lab:stable"
-    entrypoint: ["jupyter", "lab", "--ip", "0.0.0.0", "--no-browser", "--allow-root", "--ServerApp.password", "", "--ServerApp.token", ""]
+    entrypoint: ["jupyter", "lab", "--ip", "0.0.0.0", "--no-browser", "--allow-root", "--ServerApp.password", "", "--ServerApp.token", "", "--ServerApp.root_dir", "/root"]
     ports:
       - 8888:8888
     volumes:
       - ./src:/root/src
+      - ./settings:/root/settings
+      - ./output:/root/output
+      - ./kernel/real-kernel.json:/usr/local/share/jupyter/kernels/python3-real/kernel.json
+    environment:
+      - JUPYTERLAB_SETTINGS_DIR=/root/settings
